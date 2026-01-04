@@ -2,10 +2,13 @@
 
 static PLAYER* player = NULL;
 static CAMERAFOLLOW gameCamera;
+static PORTRAITTEXTURE creator;
 
 void InitializeScreenManager(){
     player = createPlayer((Vector2){100, 100});
-    gameCamera = createFollowCamera(player, 1.0f);
+    gameCamera = createFollowCamera(player, 4.0f);
+    creator.faceShape = 0;
+    initializeCreator(&creator);
 }
 
 void ChangeScreen(SCREEN *currentScreen) {
@@ -20,7 +23,8 @@ void ChangeScreen(SCREEN *currentScreen) {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 *currentScreen = GAME;
-            }
+            }   
+            updateCreator(&creator);
         } break;
         case GAME:{
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
@@ -43,6 +47,7 @@ void RenderScreen(SCREEN *currentScreen){
         } break;
         case TITLE:{
             DrawText("TITLE SCREEN", 120, 20, 80, LIGHTGRAY);
+            drawCreator(&creator);
         } break;
         case GAME:{
             DrawText("GAME SCREEN", 120, 20, 80, LIGHTGRAY);

@@ -6,6 +6,7 @@ CAMERAFOLLOW createFollowCamera(PLAYER* player, float zoom) {
     cameraFollow.targetPlayer = player;
     
     cameraFollow.camera.target = player -> position;
+    cameraFollow.camera.offset = (Vector2){ 960 - 96, 540 - 48 };
     cameraFollow.camera.zoom = zoom;
 
     return cameraFollow;
