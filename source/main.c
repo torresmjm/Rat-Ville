@@ -1,6 +1,5 @@
 #include "raylib.h"
-#include "game/player.h"
-
+#include "screen/screenmanager.h"
 
 int main() {
 
@@ -9,14 +8,15 @@ int main() {
 
     SetTargetFPS(60);
 
-    PLAYER* player = createPlayer((Vector2){100, 100});
+    SCREEN currentScreen = INTRO;
+    InitializeScreenManager();
 
     while (!WindowShouldClose()) {
-        updatePlayer(player, GetFrameTime());
+        ChangeScreen(&currentScreen);
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        RenderPlayerBodyTextures(player);
+        RenderScreen(&currentScreen);
         
         EndDrawing();
     }
