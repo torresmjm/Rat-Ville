@@ -31,7 +31,7 @@ void updateCreator(PORTRAITTEXTURE *portraitTexture) {
 }
 
 void drawCreator(PORTRAITTEXTURE *portraitTexture) {
-    DrawTextureV(portraitTexture -> portrait, (Vector2){200, 100}, WHITE);
+    DrawTextureEx(portraitTexture -> portrait, (Vector2){238, 474}, 0, 4.5, WHITE);
     DrawText("Use LEFT and RIGHT arrows to change face shape", 50, 300, 20, BLACK);
 }
 

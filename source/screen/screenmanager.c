@@ -3,12 +3,14 @@
 static PLAYER* player = NULL;
 static CAMERAFOLLOW gameCamera;
 static PORTRAITTEXTURE creator;
+static TEXTURE testTexture;
 
 void InitializeScreenManager(){
     player = createPlayer((Vector2){100, 100});
     gameCamera = createFollowCamera(player, 4.0f);
     creator.faceShape = 0;
     initializeCreator(&creator);
+    testTexture = LoadTextureFromFile("assets/test.png", (Vector2){0,0});
 }
 
 void ChangeScreen(SCREEN *currentScreen) {
@@ -44,9 +46,11 @@ void RenderScreen(SCREEN *currentScreen){
     switch (*currentScreen) {
         case INTRO:{
             DrawText("INTRO SCREEN", 120, 20, 80, LIGHTGRAY);
+            
         } break;
         case TITLE:{
             DrawText("TITLE SCREEN", 120, 20, 80, LIGHTGRAY);
+            DrawTextureEx(testTexture.texture, testTexture.position,0, 2, WHITE);
             drawCreator(&creator);
         } break;
         case GAME:{
